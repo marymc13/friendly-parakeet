@@ -12,27 +12,41 @@ var numberArr = ['0','1','2','3','4','5','6','7','8','9',];
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-function generatePassword () {
-  console.log("Button clicked.")
+function generatePassword() {
+console.log("Button clicked.")
+}
   function getPrompts() {
-     characterLength = parseInt(prompt("How many characters do you want your password to be? Choose between 8 and 128 characters."));
+    //1. Prompt the user for password criteria
+     //a. password length between 8 < 128  
+    characterLength = parseInt(prompt("How many characters do you want your password to be? Choose between 8 and 128 characters."));
      if(isNaN(characterLength) || characterLength < 8 || characterLength > 128) {
       alert("Character length has to be a number between 8 and 128.");
       return false;
      }
+//b. lowercase, uppercase, numbers, special characters
      if(confirm("Would you like lowercase letters in your password?")){
       choiceArr = choiceArr.concat(lowerCassArr);
      }
-  }
-  //1. Prompt the user for password criteria
-     //a. password length between 8 < 128  
+     if(confirm("Would you like uppercase letters in your password?")){
+      choiceArr = choiceArr.concat(upperCassArr);
+     }
+     if(confirm("Would you like special characters in your password?")){
+      choiceArr = choiceArr.concat(specialCharArr);
+     } 
+     if(confirm("Would you like numbers in your password?")){
+      choiceArr = choiceArr.concat(numberArr);
+     }
+     return true
 
-      //b. lowercase, uppercase, numbers, special characters
+  }
+  
+
+      
   //2. Validate the input
   //3.Generate password based on criteria
   //4. Display generated password on the page
-  return "generated password will go here";
-}
+  //return generated password will go here
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
